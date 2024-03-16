@@ -19,17 +19,25 @@ const userSchema = new Schema(
             //include regex expression to verify valid email address
             match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Please enter a valid email address']
         },
+        //TODO: check if this is correct 
         thoughts: [thoughtSchema], 
-        friends: {
-            //add self reference 
-        }
+        friends:  {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+          }
     }
 );
 
-//TODO: add virtuals 
-
+userSchema
+//fullName is a virtual property on the user Schema 
+  .virtual('friendCount')
+  // defining a getter function for the fullName virtual property
+  .get(function () {
+   return this.friends.length;
+  });
 
 const User = model('user', userSchema);
+
 module.exports = User;
 
 
