@@ -1,10 +1,11 @@
-const {Schema, model} = require('mongoose');
+const {Schema, Types} = require('mongoose');
 
 //add reaction schema 
 const reactionSchema = new Schema({
     reactionId: {
-      type: mongoose.Schema.Types.ObjectId,
-      default: () => new mongoose.Types.ObjectId()
+      //we need to set the objectId since reaction isn't ever sent to mongoDB
+      type: Schema.Types.ObjectId,
+      default: new Types.ObjectId()
     },
     reactionBody: {
       type: String,
