@@ -1,27 +1,6 @@
 const {Schema, model} = require('mongoose');
-// const reactionSchema = require('./Reaction');
+const reactionSchema = require('./Reaction');
 
-//add reaction schema 
-const reactionSchema = new Schema({
-    reactionId: {
-      type: mongoose.Schema.Types.ObjectId,
-      default: () => new mongoose.Types.ObjectId()
-    },
-    reactionBody: {
-      type: String,
-      required: true,
-      maxlength: 280
-    },
-    username: {
-      type: String,
-      required: true
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: createdAtVal => dateFormat(createdAtVal)
-    }
-  });
   
 //add thought schema 
 const thoughtSchema = new Schema(
@@ -57,5 +36,6 @@ thoughtSchema
     return this.reactions.length;
 });
 
+//create model for collection
 const Thought = model('thought', thoughtSchema);
 module.exports = Thought;
