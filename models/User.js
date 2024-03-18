@@ -1,4 +1,4 @@
-const {Schema, Types, model} = require('mongoose');
+const {Schema, model} = require('mongoose');
 const thoughtSchema = require('./Thought');
 
 // Schema to create User model
@@ -17,7 +17,6 @@ const userSchema = new Schema(
             //include regex expression to verify valid email address
             match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Please enter a valid email address']
         },
-        //TODO: check if this is correct 
         thoughts: {
             type: Schema.Types.ObjectId,
             ref: 'thought'
@@ -26,7 +25,8 @@ const userSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'user'
           }
-    }
+    },
+    
 );
 
 userSchema
