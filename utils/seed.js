@@ -1,5 +1,12 @@
 const connection = require('../config/connection');
-const { Thought , User} = require('../models');
+const  {User} = require('../models');
+const Thought = require('../models/Thought');
+
+//require arrays of data from data.js
+const {usersData, thoughtData } = require('./data');
+
+console.log(thoughtData);
+console.log(usersData);
 
 //An error event listener is set up on the connection object to handle any errors.
 connection.on('error', (err) => err);
@@ -22,9 +29,13 @@ connection.once('open', async() => {
     }
 
     //create an empty array to hold users
-    const users = [];
-    const thoughts = [];
+    thoughts = [];
+    users = [];
 
+     await User.insertMany(usersData);
+     await Thought.insertMany(thoughtData);
+
+    process.exit(0);
 
 })
 
