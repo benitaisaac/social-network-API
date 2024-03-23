@@ -12,17 +12,22 @@ module.exports = {
         } 
     }, 
 
-
+    // TODO: GET a single thought by its _id
     async getSingleThought (req, res) {
         try {
-            const thought = await Thought.findOne({_id: req.params.courseId})
+            // thoughtId = req.params.thoughtId;
+            const thought = await Thought.findOne({_id: req.params.thoughtId});
+            res.json(thought);
+
+            if(!thought) {
+                return res.status(404).json({message: "No course with that ID"})
+            }
 
         } catch(err) {
-            res.status(404).json({ message: 'No course with that ID'});
+            res.status(500).json(err);
         }
-    }
+    },
     
-    // TODO: GET a single thought by its _id
 
     // TODO: POST to create a new thought
     //(dont forget to push the created thought's -id to the associated user's thoughts array field)
