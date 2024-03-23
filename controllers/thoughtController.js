@@ -13,11 +13,12 @@ module.exports = {
     }, 
 
 
-    async testThoughts (req, res) {
+    async getSingleThought (req, res) {
         try {
-            res.send("you are in api/thoughts/test")
-        } catch (err) {
-            res.status(500).json(err);
+            const thought = await Thought.findOne({_id: req.params.courseId})
+
+        } catch(err) {
+            res.status(404).json({ message: 'No course with that ID'});
         }
     }
     
