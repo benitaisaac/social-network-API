@@ -12,7 +12,7 @@ module.exports = {
         } 
     }, 
 
-    // TODO: GET a single thought by its _id
+    // GET a single thought by its _id
     async getSingleThought (req, res) {
         try {
             // thoughtId = req.params.thoughtId;
@@ -27,9 +27,20 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+
+        // create a new thought
+    async createThought (req, res) {
+        try {
+            const newThought = req.body;
+            const thought = await Thought.create(newThought);
+            res.json(thought);
+
+        } catch(err) {
+            res.status(500).json(err);
+        }
+    }
     
 
-    // TODO: POST to create a new thought
     //(dont forget to push the created thought's -id to the associated user's thoughts array field)
 
     // TODO: PUT to update a thought by its  _id
