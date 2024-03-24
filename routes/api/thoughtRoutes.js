@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 //import routes from controllers file 
 
-const {getThoughts, getSingleThought, createThought, updateThought} = require('../../controllers/thoughtController');
+const {getThoughts, getSingleThought, createThought, updateThought, deleteThought} = require('../../controllers/thoughtController');
 
 
 // Route is  /api/thoughts
@@ -14,7 +14,8 @@ router.route('/')
 // Route is /api/
 router.route('/:thoughtId')
     .get(getSingleThought)
-    .put(updateThought);
+    .put(updateThought)
+    .delete(deleteThought);
 ;
 
 module.exports = router;

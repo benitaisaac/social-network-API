@@ -20,7 +20,7 @@ module.exports = {
             res.json(thought);
 
             if(!thought) {
-                return res.status(404).json({message: "No course with that ID"})
+                return res.status(404).json({message: "No thought with that ID"})
             }
 
         } catch(err) {
@@ -51,7 +51,7 @@ module.exports = {
             );
 
             if(!thought){
-                return res.status(404).json({message: 'No course with this id!'})
+                return res.status(404).json({message: 'No thought with this id!'})
             }
 
             res.json(thought);
@@ -59,7 +59,20 @@ module.exports = {
         } catch(err) {
             res.status(500).json(err);
         }
-    }
+    },
 
     // TODO: DELETE to remove a thought by its _id
+    async deleteThought (req, res) {
+        try {
+            const thought = await Thought.findOneAndDelete({_id: req.params.thoughtId})
+
+            if(!thought) {
+                return res.status(404).json({message: "No thought with this id!"});
+            }
+            res.json({ message: 'Thought deleted!'});
+
+        } catch(err) {
+            res.status(500).json(err);
+        }
+    }
 };
