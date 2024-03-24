@@ -5,9 +5,6 @@ const Thought = require('../models/Thought');
 //require arrays of data from data.js
 const {usersData, thoughtData } = require('./data');
 
-console.log(thoughtData);
-console.log(usersData);
-
 //An error event listener is set up on the connection object to handle any errors.
 connection.on('error', (err) => err);
 
@@ -29,10 +26,31 @@ connection.once('open', async() => {
     }
 
     //create an empty array to hold users
-    thoughts = [];
-    users = [];
+    // thoughts = [];
+    // users = [];
 
-     await User.insertMany(usersData);
+    const seedUsers = async () => {
+        try {
+        //   await User.deleteMany(); // Clear existing data
+          const users = await User.insertMany(usersData); // Insert users into the database
+      
+          // Assign random friends to each user
+          users.forEach(user => {
+            const friends = users.filter(friend => friend._id.toString() !== user._id.toString());
+            const numFriends = Math.floor(Math.random() * 4) + 1;
+            user.friends = friends.slice(0, numFriends).map(friend => friend._id);
+          });
+      
+          await Promise.all(users.map(user => user.save())); // Save the updated users with friends
+          console.log('Database seeded successfully');
+        } catch (error) {
+          console.error('Error seeding database:', error);
+        }
+      };
+      
+      seedUsers();
+
+    //  await User.insertMany(usersData);
      await Thought.insertMany(thoughtData);
 
     process.exit(0);
