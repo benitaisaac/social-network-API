@@ -2,12 +2,16 @@ const router = require('express').Router();
 
 //import routes from controllers file 
 
-const {getThoughts, getSingleThought} = require('../../controllers/thoughtController');
+const {getThoughts, getSingleThought, createThought} = require('../../controllers/thoughtController');
 
 
-// /api/thoughts
-router.route('/').get(getThoughts);
+// Route is  /api/thoughts
+router.route('/')
+    .get(getThoughts)
+    .post(createThought);
 
+
+// Route is /api/
 router.route('/:thoughtId').get(getSingleThought);
 
 module.exports = router;
