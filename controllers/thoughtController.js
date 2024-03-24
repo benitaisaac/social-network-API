@@ -29,6 +29,7 @@ module.exports = {
     },
 
         // create a new thought
+        //TODO: (dont forget to push the created thought's -id to the associated user's thoughts array field)
     async createThought (req, res) {
         try {
             const newThought = req.body;
@@ -38,12 +39,27 @@ module.exports = {
         } catch(err) {
             res.status(500).json(err);
         }
-    }
-    
-
-    //(dont forget to push the created thought's -id to the associated user's thoughts array field)
+    },
 
     // TODO: PUT to update a thought by its  _id
+    async updateThought (req, res) {
+        try {
+            const thought = await Thought.findOneAndUpdate(
+                {_id: req.params.thoughtId},
+                { $set: req.body},
+                { runValidators: true, new: true}
+            );
+
+            if(!thought){
+                return res.status(404).json({message: 'No course with this id!'})
+            }
+
+            res.json(thought);
+
+        } catch(err) {
+            res.status(500).json(err);
+        }
+    }
 
     // TODO: DELETE to remove a thought by its _id
 };
