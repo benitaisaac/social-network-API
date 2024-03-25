@@ -17,11 +17,11 @@ module.exports = {
         try {
             // thoughtId = req.params.thoughtId;
             const thought = await Thought.findOne({_id: req.params.thoughtId});
-            res.json(thought);
 
             if(!thought) {
                 return res.status(404).json({message: "No thought with that ID"})
-            }
+            };
+            res.json(thought);
 
         } catch(err) {
             res.status(500).json(err);
