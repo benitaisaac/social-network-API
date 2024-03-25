@@ -21,47 +21,47 @@ const thoughtData = [
   },
   {
     thoughtText: "Just thinking out loud",
-     username: "john_doe", 
+     username: "jane_smith", 
     reactions: [{ reactionBody: "Agree!", username: "john_doe" }],
   },
   {
     thoughtText: "Deep thoughts on a rainy day",
-     username: "john_doe", 
+     username: "mike_jones", 
     reactions: [{ reactionBody: "Thought-provoking!", username: "john_doe" }],
   },
   {
     thoughtText: "Reflecting on life",
-     username: "john_doe", 
+     username: "sara_adams", 
     reactions: [{ reactionBody: "Deep!", username: "john_doe" }],
   },
   {
     thoughtText: "What a beautiful world",
-     username: "john_doe", 
+     username: "lisa_davis", 
     reactions: [{ reactionBody: "Absolutely!", username: "john_doe" }],
   },
   {
     thoughtText: "Dreaming big",
-     username: "john_doe", 
+     username: "chris_brown", 
     reactions: [{ reactionBody: "Inspiring!", username: "john_doe" }],
   },
   {
     thoughtText: "Lost in thought",
-     username: "john_doe", 
+     username: "ryan_miller", 
     reactions: [{ reactionBody: "Lost in thought too!", username: "john_doe" }],
   },
   {
     thoughtText: "Contemplating the universe",
-     username: "john_doe", 
+     username: "olivia_taylor", 
     reactions: [{ reactionBody: "Mind-blowing!", username: "john_doe" }],
   },
   {
     thoughtText: "Feeling grateful",
-     username: "john_doe", 
+     username: "lisa_davis", 
     reactions: [{ reactionBody: "Gratitude is key!", username: "john_doe" }],
   },
   {
     thoughtText: "Thinking about the future",
-     username: "john_doe", 
+     username: "alex_carter", 
     reactions: [
       { reactionBody: "Exciting times ahead!", username: "john_doe" },
     ],
