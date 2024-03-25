@@ -43,16 +43,23 @@ connection.once('open', async() => {
       
           await Promise.all(users.map(user => user.save())); // Save the updated users with friends
           console.log('Database seeded successfully');
+          return users;
         } catch (error) {
           console.error('Error seeding database:', error);
         }
       };
       
-      seedUsers();
+      const users = await seedUsers();
 
     //  await User.insertMany(usersData);
-     await Thought.insertMany(thoughtData);
+     const thoughts = await Thought.insertMany(thoughtData);
 
+     for (let i = 0; i < users.length; i++) {
+        users[i].thoughts.push(...(thoughts.filter(thought => thought.username === users[i].username).map(thought => thought._id)));
+        await users[i].save();
+        console.log('full save')
+      }
+     
     process.exit(0);
 
 })
