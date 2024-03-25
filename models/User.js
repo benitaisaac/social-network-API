@@ -19,10 +19,10 @@ const userSchema = new Schema({
       "Please enter a valid email address",
     ],
   },
-  thoughts: {
+  thoughts:[ {
     type: Schema.Types.ObjectId,
     ref: "thought",
-  },
+  }],
   friends: [
     {
       type: Schema.Types.ObjectId,
@@ -40,11 +40,11 @@ userSchema
   });
 
 // Define a virtual field for friends
-userSchema.virtual('populatedFriends', {
-  ref: 'User',
-  localField: 'friends',
-  foreignField: '_id'
-});
+// userSchema.virtual('populatedFriends', {
+//   ref: 'User',
+//   localField: 'friends',
+//   foreignField: '_id'
+// });
 
 //create model for collection
 const User = model("user", userSchema);
