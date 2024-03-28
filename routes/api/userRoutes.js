@@ -15,7 +15,7 @@ router.route('/:userId')
 
 //POST to add a new friend to a user's friend list 
 router.route('/:userId/friends/:friendId')
-.put(addFriend);
+.post(addFriend);
 
 
 //DELETE to remove a friend from a user's friend list 
