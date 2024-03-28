@@ -25,6 +25,21 @@ module.exports = {
         } catch(err) {
             res.status(500).json(err);
         }
+    },
+
+//TODO: POST  new user
+    async createUser (req, res) {
+        try {
+            const user = await User.create(req.body);
+            res.json(user);
+        } catch(err) {
+            res.status(500).json(err);
+        }
     }
+
+
+    //TODO: PUT to update a user by its _id
+
+    //TODO: DELETE to remove a user by its _id
 
 }
