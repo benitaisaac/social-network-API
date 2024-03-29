@@ -80,10 +80,10 @@ module.exports = {
       const { reactionBody, username } = req.body;
 
       // Find thought by ID and push new reaction
+      // Note that we cannot update the Reaction model since it does not exist 
       const updatedThought = await Thought.findOneAndUpdate(
         { _id: thoughtId },
         { $addToSet: {reactions: { reactionBody, username }}},
-        // { $push: { reactions: newReaction } },
         { new: true }
       );
 
@@ -99,4 +99,28 @@ module.exports = {
       console.error();
     }
   },
+
+  async deleteReaction (req, res) {
+    try {
+        const {thoughtId, reactionId} = req.params;
+
+        //Find thought by Id and pull reaction by ID
+        const updatedThought = await Thought.findOneAndUpdate(
+            {_id: thoughtId},
+            { $pull: {reactions: {reactionId: reactionId}}},
+            {new: true}
+        );
+        
+        if(!updatedThought){
+            res.status(404).json({message: "no thought found with this id!"});
+        }
+
+        res.json(updatedThought);
+
+    } catch(err) {
+        res.status(500).json(err);
+        console.log(err);
+        console.error();
+    }
+  }
 };
