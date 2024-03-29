@@ -73,18 +73,17 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // TODO: post to create a reaction stored in a single thought's reaction array field
+  //create a reaction stored in a single thought's reaction array field
   async createReaction(req, res) {
     try {
       const { thoughtId } = req.params;
       const { reactionBody, username } = req.body;
 
-      const newReaction = await Reaction.create({ reactionBody, username });
-
       // Find thought by ID and push new reaction
       const updatedThought = await Thought.findOneAndUpdate(
         { _id: thoughtId },
-        { $push: { reactions: newReaction } },
+        { $addToSet: {reactions: { reactionBody, username }}},
+        // { $push: { reactions: newReaction } },
         { new: true }
       );
 
@@ -95,6 +94,7 @@ module.exports = {
       }
       res.json(updatedThought);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
       console.error();
     }
