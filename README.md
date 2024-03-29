@@ -12,6 +12,7 @@
     In order to run this application, first install the required packages using `npm i` then seed the database by running `node utils/seed.js` and start the application by running `node index.js` 
 ## Usage
     Once the server starts, you can test post, delete, put, and get routes in insomnia. You will have access to user and thought data. Access to reaction and friend data will be through the user and thoughts models.
+    Here is a link to the video walkthrough: 
 ## License
 The license for this project is MIT
 https://opensource.org/license/mit/

@@ -61,7 +61,6 @@ connection.once("open", async () => {
         .map((thought) => thought._id)
     );
     await users[i].save();
-    console.log("full save");
   }
 
   process.exit(0);
