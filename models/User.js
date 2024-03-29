@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-// const thoughtSchema = require('./Thought');
 
 // Schema to create User model
 const userSchema = new Schema({
@@ -31,6 +30,7 @@ const userSchema = new Schema({
   ],
 });
 
+//Create a virtual called friendCount that retrieves the length of the user's friends array field on query 
 userSchema
   //fullName is a virtual property on the user Schema
   .virtual("friendCount")
@@ -38,13 +38,6 @@ userSchema
   .get(function () {
     return this.friends.length;
   });
-
-// Define a virtual field for friends
-// userSchema.virtual('populatedFriends', {
-//   ref: 'User',
-//   localField: 'friends',
-//   foreignField: '_id'
-// });
 
 //create model for collection
 const User = model("user", userSchema);
