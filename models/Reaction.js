@@ -1,9 +1,9 @@
 const {Schema, Types} = require('mongoose');
 
-//add reaction schema 
+//Reaction schema 
 const reactionSchema = new Schema({
     reactionId: {
-      //we need to set the objectId since reaction isn't ever sent to mongoDB
+      //we need to set the objectId 
       type: Schema.Types.ObjectId,
       default: new Types.ObjectId()
     },
@@ -21,6 +21,9 @@ const reactionSchema = new Schema({
       default: Date.now,
       get: createdAtVal => dateFormat(createdAtVal)
     }
-  });
+  },
+  //This prevents mongodb from setting its own id
+  {_id: false});
 
+  //Reaction will not be a model. It is schema only
   module.exports = reactionSchema;
