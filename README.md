@@ -13,6 +13,9 @@
 ## Usage
     Once the server starts, you can test post, delete, put, and get routes in insomnia. You will have access to user and thought data. Access to reaction and friend data will be through the user and thoughts models.
     Here is a link to the video walkthrough: 
+
+[Video Walkthrough](https://drive.google.com/file/d/1pS4KAFKXR14PTUE-Bzh5Z5Trnmhb16Mx/view)
+
 ## License
 The license for this project is MIT
 https://opensource.org/license/mit/
