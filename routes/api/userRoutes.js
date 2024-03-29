@@ -8,12 +8,13 @@ router.route('/')
     .get(getUsers)
     .post(createUser);
 
+// route is /api/users/:userId
 router.route('/:userId')
     .get(getSingleUser)
     .put(updateUser)
     .delete(deleteUser);
 
-//Routes to add and delete a friend 
+//Route is /api/users/:userId/friends/:friendId
 router.route('/:userId/friends/:friendId')
 .post(addFriend)
 .delete(deleteFriend);

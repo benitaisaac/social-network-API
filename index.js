@@ -2,9 +2,6 @@ const express = require('express');
 const db = require('./config/connection.js');
 const routes = require('./routes');
 
-//what does this code do? 
-// const cwd = process.cwd();
-
 const PORT = process.env.PORT || 3005;
 const app = express();
 

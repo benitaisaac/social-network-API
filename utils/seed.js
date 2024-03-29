@@ -29,13 +29,8 @@ connection.once("open", async () => {
     await connection.dropCollection("thoughts");
   }
 
-  //create an empty array to hold users
-  // thoughts = [];
-  // users = [];
-
   const seedUsers = async () => {
     try {
-      //   await User.deleteMany(); // Clear existing data
       const users = await User.insertMany(usersData); // Insert users into the database
 
       // Assign random friends to each user
@@ -57,7 +52,6 @@ connection.once("open", async () => {
 
   const users = await seedUsers();
 
-  //  await User.insertMany(usersData);
   const thoughts = await Thought.insertMany(thoughtData);
 
   for (let i = 0; i < users.length; i++) {

@@ -11,7 +11,7 @@ router.route('/')
     .post(createThought);
 
 
-// Route is /api/
+// Route is /api/thoughts/:thoughtId
 router.route('/:thoughtId')
     .get(getSingleThought)
     .put(updateThought)
@@ -23,10 +23,9 @@ router.route('/:thoughtId')
  .post(createReaction);
 
 
- //route: /api/thoughts/:thoughtId/reactions/:reactionId
+ //route is /api/thoughts/:thoughtId/reactions/:reactionId
  router.route('/:thoughtId/reactions/:reactionId')
  .delete(deleteReaction);
 
- //TODO: DELETE to pull and remove a reaction by the reaction's reactionId value
 
 module.exports = router;
